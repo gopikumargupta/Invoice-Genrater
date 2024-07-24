@@ -21,12 +21,12 @@ const Find = () => {
 
   const handleSearch = async () => {
     try {
+      setIsLoading(true);
       const url = `${import.meta.env.VITE_FIND_URL}/find-by/${searchTerm}`;
 
       const response = await axios.get(url, {
         responseType: "arraybuffer",
       });
-      setIsLoading(true);
 
       const pdfBytes = response.data;
 
@@ -48,6 +48,9 @@ const Find = () => {
   return (
     <div className="w-full max-w-2xl mx-auto mt-8">
       {isLoading && <Loding />}
+      <h1 className="text-2xl font-bold mb-4">
+        Find Invoice By Invoice Number
+      </h1>
       <div className="relative">
         <input
           type="text"
